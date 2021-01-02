@@ -2,7 +2,9 @@ package com.saharv.samnetworktest.module.main.fragments.articles
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.app.SharedElementCallback
+import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -77,6 +79,9 @@ class ArticlesFragment : BaseFragment<ArticlesViewModel>() {
                     progress_bar.gone()
                     articles_recyclerview.show()
                     articlesAdapter.submitList(it.list)
+                    (view?.parent as? ViewGroup)?.doOnPreDraw {
+                        startPostponedEnterTransition()
+                    }
                 }
                 is ErrorState -> {
                     progress_bar.gone()
@@ -88,7 +93,6 @@ class ArticlesFragment : BaseFragment<ArticlesViewModel>() {
 
 
     private fun navigateToArticleInfoFragment(result: ArticleItemClickResult){
-        startPostponedEnterTransition()
         (exitTransition as TransitionSet).excludeTarget(result.view, true)
         val fragment = ArticleInfoFragment.newInstance(result.item.title?:"")
         (activity as MainActivity).replaceFragmentInActivity(

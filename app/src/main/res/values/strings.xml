@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">SamNetworkTest</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [Transitions name] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <string name="transition_module_article_image">article_image</string>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [General] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <string name="general_empty"/>
+    <string name="general_module_continue">Continue</string>
+    <string name="general_module_ok">Ok</string>
+    <string name="general_module_done">Done</string>
+    <string name="general_module_cancel">Cancel</string>
+    <string name="general_module_yes">Yes</string>
+    <string name="general_module_no">No</string>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [Dialog module] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+     <string name="dialog_module_general_error_title">Loading error</string>
+     <string name="dialog_module_general_error_subtitle">something went wrong</string>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [Articles module] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <string name="articles_module_app_bar_title">Articles</string>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ [Article Info module] ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <string name="article_info_module_app_bar_title">Article Info</string>
+
+
+
+</resources>

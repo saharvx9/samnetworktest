@@ -1,1 +1,1 @@
-![plot](SamNetWorkTest diagram.png)
+![Screenshot](SamNetWorkTest diagram.png)

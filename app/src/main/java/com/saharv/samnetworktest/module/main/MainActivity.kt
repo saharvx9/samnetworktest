@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceFragments(fragment: Fragment) {
-        addFragmentToActivity(fragment,R.id.container,addToBackStack = true)
+        replaceFragmentInActivity(fragment,R.id.container)
     }
 
 
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                         setImageResource(it.image)
                     }
                 }
-                CONNECTING, DISCONNECTING -> {
+                DISCONNECTING -> {
                     progress_bar.show()
                     status_network_image.gone()
                 }

@@ -17,7 +17,7 @@ D - Dependency Inversion Principle.
 
 2.Retrofit - for api requests
 
-3.Room - SqlLite wrrapper for local db
+3.Room - SqlLite wrrapper for local db for offline support
 
 4.Kotlin Flow + coroutines
 

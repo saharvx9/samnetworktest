@@ -17,10 +17,7 @@ class ArticlesRepository
                 .flatMapConcat {
                     remote.loadBitCoinArticles()
                         .zip(remote.loadTopHeadlinesArticles()) { a, b -> ArrayList(a + b) } }
-                .flatMapConcat { list ->
-                    local.saveArticles(list)
-                        .map { list }
-                }
+                .flatMapConcat { list -> local.saveArticles(list).map { list } }
         } else {
             local.loadArticles()
         }

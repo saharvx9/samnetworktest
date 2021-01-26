@@ -76,12 +76,12 @@ class ArticlesFragment : BaseFragment<ArticlesViewModel>() {
                     articles_recyclerview.gone()
                 }
                 is ArticlesListState -> {
-                    progress_bar.gone()
-                    articles_recyclerview.show()
                     articlesAdapter.submitList(it.list)
                     (view?.parent as? ViewGroup)?.doOnPreDraw {
                         startPostponedEnterTransition()
                     }
+                    articles_recyclerview.show()
+                    progress_bar.gone()
                 }
                 is ErrorState -> {
                     progress_bar.gone()
@@ -111,24 +111,22 @@ class ArticlesFragment : BaseFragment<ArticlesViewModel>() {
         exitTransition = TransitionInflater.from(context)
             .inflateTransition(R.transition.grid_exit_transition)
 
-        setExitSharedElementCallback(
-            object : SharedElementCallback() {
-                override fun onMapSharedElements(
-                    names: List<String?>,
-                    sharedElements: MutableMap<String?, View?>
-                ) {
-                    this@ArticlesFragment.logInfo("show currentPosition: ${viewModel.currentPosition}")
-                    viewModel.currentPosition?.let {
-                        // Locate the ViewHolder for the clicked position.
-                        val selectedViewHolder: RecyclerView.ViewHolder = articles_recyclerview
-                            .findViewHolderForAdapterPosition(it) ?: return
-
-                        this@ArticlesFragment.logInfo("map the first shared element ")
-                        // Map the first shared element name to the child ImageView.
-                        sharedElements[names[0]] = selectedViewHolder.itemView.findViewById(R.id.card_view)
-                    }
-                }
-            })
+//        setExitSharedElementCallback(object : SharedElementCallback() {
+//                override fun onMapSharedElements(
+//                    names: List<String?>,
+//                    sharedElements: MutableMap<String?, View?>
+//                ) {
+//                    this@ArticlesFragment.logInfo("show currentPosition: ${viewModel.currentPosition}")
+//                    viewModel.currentPosition?.let {
+//                        // Locate the ViewHolder for the clicked position.
+//                        val selectedViewHolder: RecyclerView.ViewHolder = articles_recyclerview.findViewHolderForAdapterPosition(it) ?: return
+//
+//                        this@ArticlesFragment.logInfo("map the first shared element ")
+//                        // Map the first shared element name to the child ImageView.
+//                        sharedElements[names[0]] = selectedViewHolder.itemView.findViewById(R.id.card_view)
+//                    }
+//                }
+//            })
     }
 
 

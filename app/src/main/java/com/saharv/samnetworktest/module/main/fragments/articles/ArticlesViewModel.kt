@@ -9,6 +9,7 @@ import com.saharv.samnetworktest.data.model.ArticleItem
 import com.saharv.samnetworktest.data.source.articles.ArticlesRepository
 import com.saharv.samnetworktest.module.base.BaseViewModel
 import com.saharv.samnetworktest.module.main.fragments.articles.ArticlesState.*
+import com.saharv.samnetworktest.utils.extenstion.logError
 import com.saharv.samnetworktest.utils.extenstion.logInfo
 import kotlinx.coroutines.flow.*
 
@@ -29,12 +30,14 @@ constructor(private val articlesRepository: ArticlesRepository,
                 articlesRepository.loadArticles(it)
             }.onStart { articlesStateLiveData.postValue(LoadingState) }
             .catch { e ->
+                logError("show error : $e")
                 articlesStateLiveData.postValue(ErrorState(e.message ?: "Failed load articles list"))
             }.map { ArticlesListState(it) }
             .collectExt {
                 logInfo("show articles list collect size ${it.list.size}")
                 articlesStateLiveData.postValue(it)
             }
+
     }
 
     @VisibleForTesting

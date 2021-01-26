@@ -56,7 +56,7 @@ abstract class BaseAndroidViewModel(application: Application)
                 it.connectivityTypeChannel
                     .asFlow()
                     .collect {
-                        this.logInfo("COLLECT $it")
+                        this@BaseAndroidViewModel.logInfo("COLLECT $it")
                         connectivityTypeLiveData.postValue(it)
                     }
             }

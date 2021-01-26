@@ -32,9 +32,13 @@ fun AppCompatActivity.replaceFragmentInActivity(
         return
     }
     supportFragmentManager.transact {
+
         if (addToBackStack) addToBackStack(fragment::class.qualifiedName)
         if(!sharedElement) fragmentAnimationType?.init(this)
-        else addSharedElement(sharedElementView!!, sharedElementView.transitionName)
+        else {
+            setReorderingAllowed(true)
+            addSharedElement(sharedElementView!!, sharedElementView.transitionName)
+        }
         replace(frameId, fragment)
     }
 }

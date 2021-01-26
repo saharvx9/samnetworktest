@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.saharv.samnetworktest.R
 import com.saharv.samnetworktest.data.model.ArticleItem
@@ -23,7 +24,7 @@ class ArticleInfoFragment : BaseFragment<ArticlesInfoViewModel>() {
     companion object {
         private const val EXTRA_TRANSITION = "EXTRA_TRANSITION"
 
-        fun newInstance(transitionName: String):ArticleInfoFragment{
+        fun newInstance(transitionName: String): ArticleInfoFragment {
             return ArticleInfoFragment().apply {
                 arguments = Bundle().apply { putString(EXTRA_TRANSITION, transitionName) }
             }
@@ -32,9 +33,10 @@ class ArticleInfoFragment : BaseFragment<ArticlesInfoViewModel>() {
 
     override fun getLayoutResource(): Int = R.layout.fragment_article_info
 
-    override fun getViewModelClass(): Class<ArticlesInfoViewModel> = ArticlesInfoViewModel::class.java
+    override fun getViewModelClass(): Class<ArticlesInfoViewModel> =
+        ArticlesInfoViewModel::class.java
 
-    override fun getToolBarTitle(): Int  = R.string.article_info_module_app_bar_title
+    override fun getToolBarTitle(): Int = R.string.article_info_module_app_bar_title
 
     override fun setupViews() {
         article_image.transitionName = arguments?.getString(EXTRA_TRANSITION)
@@ -50,14 +52,15 @@ class ArticleInfoFragment : BaseFragment<ArticlesInfoViewModel>() {
     }
 
 
-    private fun initArticleItemData(item: ArticleItem){
+    private fun initArticleItemData(item: ArticleItem) {
 
         article_title.text = item.title
-        article_subtitle.text = item.description?:"none description"
+        article_subtitle.text = item.description ?: "none description"
 
         Glide.with(this)
             .load(item.urlToImage ?: R.drawable.ic_placeholder)
             .fitCenter()
+            .apply(RequestOptions().dontTransform())
             .listener(object : RequestListener<Drawable?> {
                 override fun onLoadFailed(
                     e: GlideException?,
@@ -97,19 +100,19 @@ class ArticleInfoFragment : BaseFragment<ArticlesInfoViewModel>() {
         sharedElementEnterTransition = transition
 
         // A similar mapping is set at the GridFragment with a setExitSharedElementCallback.
-        setEnterSharedElementCallback(
-            object : SharedElementCallback() {
-                override fun onMapSharedElements(
-                    names: List<String>,
-                    sharedElements: MutableMap<String, View>
-                ) {
-                    // Map the first shared element name to the child ImageView.
-
-
-                    // Map the first shared element name to the child ImageView.
-                    sharedElements[names[0]] = article_image
-                }
-            })
+//        setEnterSharedElementCallback(
+//            object : SharedElementCallback() {
+//                override fun onMapSharedElements(
+//                    names: List<String>,
+//                    sharedElements: MutableMap<String, View>
+//                ) {
+//                    // Map the first shared element name to the child ImageView.
+//
+//
+//                    // Map the first shared element name to the child ImageView.
+//                    sharedElements[names[0]] = article_image
+//                }
+//            })
     }
 
 

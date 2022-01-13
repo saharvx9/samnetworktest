@@ -112,8 +112,8 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     // Anko extensions dependencies
-    def anko_version = '0.10.8'
-    implementation "org.jetbrains.anko:anko:$anko_version"
+//    def anko_version = '0.10.8'
+//    implementation "org.jetbrains.anko:anko:$anko_version"
 
     //Glide load images dependencies
     implementation 'com.github.bumptech.glide:glide:4.11.0'
